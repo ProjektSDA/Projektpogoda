@@ -12,11 +12,6 @@ def register_view(request):
             gotowe = form.cleaned_data
             print(gotowe)
             form.save()
-            return redirect(to=reverse("main"))
+            return redirect(to=reverse("weather_base"))
     form = MySignupForm()
     return render(request, "registration/register.html", {"form": form})
-
-
-@login_required
-def main_view(request):
-    return render(request, "main.html")

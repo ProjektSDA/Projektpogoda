@@ -2,5 +2,55 @@ body
     {
     background-image: url("sun_rain.jpg");
     }
+#header
+{ color: #556B2F;
+  height: 100 px;
+  border-bottom: 1px solid #888888;
+}
+#menu
+{
+  width: 150px;
+  background-color: #eeeeee;
+  float: left;
+}
 
+#menu ul
+{
+ list-style: none;
+ margin: 0;
+ padding: 0;
+}
+
+#menu ul li
+{
+  padding-left: 10px;
+  padding-top: 5px;
+}
+#content
+{
+  padding: 20px;
+  float: left;
+}
+
+#footer
+{
+  padding-top:20px;
+  border-top: 1px solid #888888
+}
+
+
+.helptext
+{ font-size: 0.8em;
+  color: #999999;
+}
+
+ul.errorlist
+{
+  list-style: none;
+  margin:0;
+  padding:0;
+  color:red;
+}
+
+.required label:after{content:"*"}
 

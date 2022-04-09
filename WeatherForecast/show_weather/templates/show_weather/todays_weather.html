@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block site_title %} Today's weather for {{ Weather.city }} {% endblock %}
+
+{% block content %}
+    <h2> Weather forecast </h2>
+     City: {{ Weather.city }}<br>
+     Description: {{ Weather.description }} <br>
+     Temperature (°C): {{ Weather.temperature }} <br>
+     Humidity (%): {{ Weather.humidity }} <br>
+     Precipitation (mm): {{ Weather.precipitation }} <br>
+     Pressure (hPa): {{ Weather.pressure }} <br>
+     Wind direction: {{ Weather.wind_direction }} <br>
+     Wind speed (km/h): {{ Weather.wind_speed }}
+{% endblock %}

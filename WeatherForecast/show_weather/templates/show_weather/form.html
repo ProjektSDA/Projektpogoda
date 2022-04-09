@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block site_title %} Choose City{{ Weather.city }} {% endblock %}
+
+{% block content %}
+<form method="POST" action="{% url 'submit_city' %}">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Send">
+</form>
+{% endblock %}

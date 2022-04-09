@@ -1,22 +1,29 @@
 
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% if user.is_authenticated %}
+     {% if user.is_authenticated %}
     Witaj {{ user.username }}<br>
      <a href="{% url 'logout' %}">Logout</a>
-
     {% endif %}
-
-    <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css" >
-    <title>{% block title %}Prognoza pogody{% endblock %}</title>
+    <title>{% block site_title %} Weather forecast {% endblock %}</title>
+    <link href="{% static 'main.css' %}"  rel="stylesheet" type="text/css" >
+    {% block extra_css %} {% endblock %}
 </head>
-<body >
-<div>
-{% block content %} {% endblock %}
-    <link href="">
+<body>
+<div id="main_holder">
+    <div id="header"><h1> Weather report project</h1> </div>
+    <div id="main_section">
+         <div id="menu"> {% include 'menu.html' %} </div>
+         <div id="content"> {% block content %} Ta sekcja nie ma treści {% endblock %}</div>
+         <div style="clear:both;"></div>
+    </div>
+    <div id="footer"> (c) 2022 - Weather report crew </div>
+    </div>
+
 </div>
+
 </body>
 </html>
