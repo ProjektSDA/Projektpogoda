@@ -1,8 +1,7 @@
 from django.urls import path
-
-from show_weather import views
+from . import views
 
 urlpatterns = [
-    path("todays_weather/<city>/", views.show_weather_view, name="todays_weather"),
-    path("form/", views.submit_city_view, name="submit_city"),
+    path('form/',views.SubmitLocationView.as_view(),name='submit_location'),
+    path("todays_weather/<location>/",views.ShowWeatherView.as_view(),name="todays_weather"),
 ]

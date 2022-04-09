@@ -1,9 +1,11 @@
 import requests
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.urls import reverse
 
-from show_weather.forms import CityForm
+
+from django.views.generic import View
+
+from show_weather import forms
 from show_weather.models import Weather
 
 
@@ -12,27 +14,31 @@ def weather_base_view(request):
     return render(request, "show_weather/weather_base.html")
 
 
-def submit_city_view(request):
+class SubmitLocationView(View):
+    template_name = "show_weather/form.html"
 
-    if request.method == "POST":
-        form = CityForm(request.POST)
+    def get(self, request):
+        form = forms.LocationForm()
+        return render(request, "show_weather/form.html", {"form": form})
+
+    def post(self, request):
+        form = forms.LocationForm(request.POST)
         if form.is_valid():
-            city = form.cleaned_data["city"]
-        url = reverse("todays_weather", kwargs={"city": city})
-        return redirect(url)
-    elif request.method == "GET":
-        form = CityForm()
+            form = form.cleaned_data
+            location = form["location"]
+            location = location.lower().capitalize()
+            return redirect("todays_weather", location)
         return render(request, "show_weather/form.html", {"form": form})
 
 
-def show_weather_view(request, city):
-    if request.method == "GET":
-        response = requests.get(f"https://wttr.in/{city}?format=j1")
+class ShowWeatherView(View):
+    def get(self, request, location):
+        response = requests.get(f"https://wttr.in/{location}?format=j1")
         json_response = response.json()
         shortened_response = json_response["current_condition"][0]
 
         weather = Weather(
-            city=city,
+            location=location,
             temperature=float(shortened_response["temp_C"]),
             humidity=shortened_response["humidity"],
             precipitation=float(shortened_response["precipMM"]),
@@ -48,6 +54,3 @@ def show_weather_view(request, city):
                 "Weather": weather,
             },
         )
-
-
-# Create your views here.
