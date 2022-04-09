@@ -1,6 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
+from show_weather.models import Favorite
+
 
 def is_alpha(self):
     if not self.isalpha():
@@ -14,6 +16,13 @@ class LocationForm(forms.Form):
             is_alpha,
         ],
     )
+
+class FavoriteForm(forms.ModelForm):
+
+    class Meta:
+        model=Favorite
+        fields='__all__'
+
 
 
 #
