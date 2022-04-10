@@ -21,7 +21,7 @@ class FavoriteForm(forms.ModelForm):
 
     class Meta:
         model=Favorite
-        fields='__all__'
+        fields = "__all__"
 
 
 

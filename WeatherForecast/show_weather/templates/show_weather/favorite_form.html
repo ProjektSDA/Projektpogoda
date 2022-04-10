@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
-{% block site_title %} Fbfg {% endblock %}
+{% block site_title %} Favorite {% endblock %}
 
 {% block content %}
-
-fbfffb
-bffb
-
+<form method="POST" action="">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Zapisz">
+</form>
 {% endblock %}

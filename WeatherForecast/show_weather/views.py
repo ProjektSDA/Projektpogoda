@@ -12,19 +12,6 @@ from show_weather.models import Weather
 def weather_base_view(request):
     return render(request, "show_weather/weather_base.html")
 
-# class FavoriteView(View):
-#     template_name = "show_weather/favorite.html"
-#     def get(self, request):
-#         form = forms.FavoriteForm()
-#         return render(request, "show_weather/favorite.html", {"form": form})
-#
-#     def post(self, request):
-#         form = forms.FavoriteForm(request.POST)
-#         if form.is_valid():
-#             form = form.cleaned_data
-#
-#             return  form
-#         return render(request, "show_weather/favorite.html", {"form": form})
 
 class SubmitLocationView(View):
     template_name = "show_weather/form.html"

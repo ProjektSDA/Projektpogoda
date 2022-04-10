@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -12,7 +13,7 @@ class Weather(models.Model):
     wind_speed = models.IntegerField()
     humidity = models.IntegerField()
 
-class Favorite(models.Model):
+class Favourite(models.Model):
     location= models.CharField(max_length=30)
-    user= models.CharField(max_length=30)
+    user= models.ForeignKey(User, on_delete=models.CASCADE, related_name='favourites')
 
