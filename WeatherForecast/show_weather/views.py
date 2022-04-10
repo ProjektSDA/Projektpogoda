@@ -1,12 +1,17 @@
+from dataclasses import asdict
+
 import requests
 from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
 
 from django.views.generic import View
 
 from show_weather import forms
-from show_weather.models import Weather
+from show_weather.entities import FavouriteEntity
+from show_weather.models import Weather, Favourite
+
 
 @login_required
 def weather_base_view(request):
@@ -31,8 +36,9 @@ class SubmitLocationView(View):
 
 
 class ShowWeatherView(View):
-    def get(self, request, location):
+    def get(self, request,location):
         response = requests.get(f"https://wttr.in/{location}?format=j1")
+
         json_response = response.json()
         shortened_response = json_response["current_condition"][0]
 
@@ -53,3 +59,17 @@ class ShowWeatherView(View):
                 "Weather": weather,
             },
         )
+
+
+class FavouriteView(View):
+    def get(self, request, location):
+        response = requests.get(f"https://wttr.in/{location}?format=j1")
+        json_response = response.json()
+        nearest_area = json_response["nearest_area"][0]
+        favourite_entity = FavouriteEntity(location=location,latitude=nearest_area['latitude'],longitude=nearest_area['longitude'],user=self.request.user)
+        try:
+            Favourite.objects.create(**asdict(favourite_entity))
+        except IntegrityError:
+            pass
+
+        return redirect('todays_weather',location)

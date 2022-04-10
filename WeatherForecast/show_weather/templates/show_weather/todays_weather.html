@@ -12,4 +12,5 @@
      Pressure (hPa): {{ Weather.pressure }} <br>
      Wind direction: {{ Weather.wind_direction }} <br>
      Wind speed (km/h): {{ Weather.wind_speed }}
+<a href="{% url 'favourite' Weather.location %}">dodaj</a>
 {% endblock %}

@@ -7,5 +7,5 @@ from . import views
 urlpatterns = [
     path('form/',views.SubmitLocationView.as_view(),name='submit_location'),
     path("todays_weather/<location>/",views.ShowWeatherView.as_view(),name="todays_weather"),
-    path('favorite/', CreateView.as_view(form_class=forms.FavoriteForm, template_name= 'show_weather/favorite_form.html', success_url=reverse_lazy('favorite'))),
+    path('favourite/<location>', views.FavouriteView.as_view(),name='favourite'),
 ]
