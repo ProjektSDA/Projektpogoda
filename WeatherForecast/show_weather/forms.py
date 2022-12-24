@@ -18,16 +18,7 @@ class LocationForm(forms.Form):
     )
 
 
-
-
-
-#
-# class WeatherForm(forms.Form):
-#     location = forms.CharField(max_length=30)
-#     description = forms.CharField(max_length=20)
-#     temperature = forms.IntegerField()
-#     precipitation = forms.IntegerField()
-#     pressure = forms.IntegerField()
-#     wind_direction = forms.CharField(max_length=10)
-#     wind_speed = forms.IntegerField()
-#     humidity = forms.IntegerField()
+class FavouriteModelForm(forms.ModelForm):
+    class Meta:
+        model = Favourite
+        fields = "__all__"

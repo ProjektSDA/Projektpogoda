@@ -7,6 +7,8 @@
      {% if user.is_authenticated %}
     Witaj {{ user.username }}<br>
      <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
     {% endif %}
     <title>{% block site_title %} Weather forecast {% endblock %}</title>
     <link href="{% static 'main.css' %}"  rel="stylesheet" type="text/css" >

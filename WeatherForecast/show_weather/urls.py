@@ -1,11 +1,18 @@
-from django.urls import path, reverse_lazy
-from django.views.generic import CreateView
-from . import models, forms
-
-from . import views
+from django.urls import path
+from django.views.generic import ListView
+from . import models, views
 
 urlpatterns = [
-    path('form/',views.SubmitLocationView.as_view(),name='submit_location'),
-    path("todays_weather/<location>/",views.ShowWeatherView.as_view(),name="todays_weather"),
-    path('favourite/<location>', views.FavouriteView.as_view(),name='favourite'),
+    path("location/", views.SubmitLocationView.as_view(), name="submit_location"),
+    path(
+        "todays_weather/<location>/",
+        views.ShowWeatherView.as_view(),
+        name="todays_weather",
+    ),
+    path(
+        "favourite/<location>/",
+        views.FavouriteCreateView.as_view(),
+        name="create_favourite",
+    ),
+    path("favourites/", views.FavouriteListView.as_view(), name="favourites"),
 ]

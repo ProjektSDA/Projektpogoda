@@ -4,13 +4,14 @@
 
 {% block content %}
     <h2> Weather forecast </h2>
-     Location: {{ Weather.location }}<br>
-     Description: {{ Weather.description }} <br>
-     Temperature (°C): {{ Weather.temperature }} <br>
-     Humidity (%): {{ Weather.humidity }} <br>
-     Precipitation (mm): {{ Weather.precipitation }} <br>
-     Pressure (hPa): {{ Weather.pressure }} <br>
-     Wind direction: {{ Weather.wind_direction }} <br>
-     Wind speed (km/h): {{ Weather.wind_speed }}
-<a href="{% url 'favourite' Weather.location %}">dodaj</a>
+    Location: {{ Weather.location }}<br>
+    Description: {{ Weather.description }} <br>
+    Temperature (°C): {{ Weather.temperature }} <br>
+    Humidity (%): {{ Weather.humidity }} <br>
+    Precipitation (mm): {{ Weather.precipitation }} <br>
+    Pressure (hPa): {{ Weather.pressure }} <br>
+    Wind direction: {{ Weather.wind_direction }} <br>
+    Wind speed (km/h): {{ Weather.wind_speed }}<br>
+
+<a href="{% url 'create_favourite' Weather.location %}">dodaj</a>
 {% endblock %}
