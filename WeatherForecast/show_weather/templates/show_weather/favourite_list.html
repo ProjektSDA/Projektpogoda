@@ -1,17 +1,19 @@
 {% extends 'base.html' %}
 {% block site_title %} Favorite {% endblock %}
 {% block content %}
-{% csrf_token %}
-{{ request.user }} favourites locations :<br>
-<table>
-    <thead >
-        <tr><th>Location</th><th>Latitude</th><th>Longitude</th></tr>
-    </thead>
-    <tbody>
-    {% for favourite in favourite_list  %}
-        <tr><td>{{ favourite.location }}</td><td>{{favourite.latitude }}</td> <td>{{ favourite.longitude }}</td></tr>
-    {% endfor %}
-    </tbody>
-</table>
-
+    {% if not favourite_list %}
+        No favourites locations
+    {% else %}
+        {{ request.user }} favourites locations :<br>
+        <table>
+            <thead >
+                <tr><th>Location</th><th>Latitude</th><th>Longitude</th></tr>
+            </thead>
+            <tbody>
+            {% for favourite in favourite_list  %}
+                <tr><td>{{ favourite.location }}</td><td>{{favourite.latitude }}</td> <td>{{ favourite.longitude }}</td></tr>
+            {% endfor %}
+            </tbody>
+            {% endif %}
+        </table>
 {% endblock %}

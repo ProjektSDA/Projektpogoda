@@ -3,9 +3,7 @@
 {% block content %}
 <form method="POST" action="">
     {% csrf_token %}
-    {% for val in form %}
-    {{ val }}
-    {% endfor %}
+    {{ form }}
     <input type="submit" value="Go">
 </form>
 {% endblock %}
