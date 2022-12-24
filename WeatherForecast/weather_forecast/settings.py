@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "user_service",
     "show_weather",
+    "favourite",
 ]
 
 MIDDLEWARE = [

@@ -6,21 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('show_weather', '0004_favourite_unique coordinates'),
+        ("show_weather", "0004_favourite_unique coordinates"),
     ]
 
     operations = [
         migrations.RemoveConstraint(
-            model_name='favourite',
-            name='unique coordinates',
+            model_name="favourite",
+            name="unique coordinates",
         ),
         migrations.AlterField(
-            model_name='weather',
-            name='location',
+            model_name="weather",
+            name="location",
             field=models.CharField(max_length=30),
         ),
         migrations.AddConstraint(
-            model_name='favourite',
-            constraint=models.UniqueConstraint(fields=('latitude', 'longitude', 'user'), name='unique coordinates'),
+            model_name="favourite",
+            constraint=models.UniqueConstraint(
+                fields=("latitude", "longitude", "user"), name="unique coordinates"
+            ),
         ),
     ]
