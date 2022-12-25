@@ -11,7 +11,8 @@
             </thead>
             <tbody>
             {% for favourite in favourite_list  %}
-                <tr><td>{{ favourite.location }}</td><td>{{favourite.latitude }}</td> <td>{{ favourite.longitude }}</td></tr>
+                <tr><td>{{ favourite.location }}</td><td>{{favourite.latitude }}</td> <td>{{ favourite.longitude }}</td>
+                    <td><a href="{% url 'favourite_delete' favourite.id  %}">delete</a> </td></tr>
             {% endfor %}
             </tbody>
             {% endif %}

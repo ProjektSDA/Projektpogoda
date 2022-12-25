@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block site_title %} Favorite delete {% endblock %}
+{% block content %}
+<body>
+Do you want delete {{ object.location }} ?
+<form method="POST" action="">
+  <input type="submit" value="Yes">
+  <a href="{% url 'favourite_list' %}">cancel</a>
+  {% csrf_token %}
+</form>
+</body>
+{% endblock %}

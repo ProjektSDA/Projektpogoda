@@ -29,7 +29,7 @@ class FavouriteCreateView(LoginRequiredMixin, View):
         except IntegrityError:
             pass
 
-        return redirect("todays_weather", location)
+        return redirect("favourite_list")
 
 
 class FavouriteListView(LoginRequiredMixin, View):
