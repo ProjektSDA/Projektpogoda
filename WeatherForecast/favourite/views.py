@@ -6,6 +6,7 @@ from django.db import IntegrityError
 from django.shortcuts import render, redirect
 from django.views import View
 
+from constans import WTTR_URL, RESPONSE_FORMAT
 from favourite.models import Favourite
 from favourite.entities import FavouriteEntity
 
@@ -15,7 +16,7 @@ class FavouriteCreateView(LoginRequiredMixin, View):
     login_url = "login"
 
     def get(self, request, location):
-        response = requests.get(f"https://wttr.in/{location}?format=j1")
+        response = requests.get(f"{WTTR_URL}{location}?format={RESPONSE_FORMAT}")
         json_response = response.json()
         nearest_area = json_response["nearest_area"][0]
         favourite_entity = FavouriteEntity(

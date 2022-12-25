@@ -1,6 +1,8 @@
 import requests
 from django.shortcuts import render, redirect
 from django.views.generic import View
+
+from constans import WTTR_URL, RESPONSE_FORMAT
 from show_weather import forms
 from show_weather.models import Weather
 
@@ -29,19 +31,19 @@ class SubmitLocationView(View):
 
 class ShowWeatherView(View):
     def get(self, request, location):
-        response = requests.get(f"https://wttr.in/{location}?format=j1")
+        response = requests.get(f"{WTTR_URL}{location}?format={RESPONSE_FORMAT}")
         json_response = response.json()
-        shortened_response = json_response["current_condition"][0]
+        current_condition = json_response["current_condition"][0]
 
         weather = Weather(
             location=location,
-            temperature=float(shortened_response["temp_C"]),
-            humidity=shortened_response["humidity"],
-            precipitation=float(shortened_response["precipMM"]),
-            pressure=shortened_response["pressure"],
-            description=shortened_response["weatherDesc"][0]["value"],
-            wind_direction=shortened_response["winddir16Point"],
-            wind_speed=shortened_response["windspeedKmph"],
+            temperature=float(current_condition["temp_C"]),
+            humidity=current_condition["humidity"],
+            precipitation=float(current_condition["precipMM"]),
+            pressure=current_condition["pressure"],
+            description=current_condition["weatherDesc"][0]["value"],
+            wind_direction=current_condition["winddir16Point"],
+            wind_speed=current_condition["windspeedKmph"],
         )
         return render(
             request,

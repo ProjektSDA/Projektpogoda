@@ -12,7 +12,5 @@ def is_alpha(self):
 class LocationForm(forms.Form):
     location = forms.CharField(
         max_length=30,
-        validators=[
-            is_alpha,
-        ],
+        
     )
